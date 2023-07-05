@@ -1,0 +1,48 @@
+
+
+* {
+  box-sizing: border-box;
+}
+html, body, #root, #defaultLayout, #guestLayout {
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #212121;
+  background-color: #f6f6f6;
+}
+.login-section{
+  background-image: url('https://i.postimg.cc/xdPJGNPX/gradient-3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/*Messages View*/
+.message-box{
+  padding-bottom: 15px;
+}
+
+/*Customer View*/
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+  }
+
+  /*Generics messages*/
+ .message-box-section{
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+   
+ }
