@@ -37,19 +37,19 @@ export default function Sidebar() {
           className="list-group-item list-group-item-action py-2 ripple"
           aria-current="true"
         >
-          <i class="fa-solid fa-users me-3"></i><span>Usuarios</span>
+          <i className="fa-solid fa-users me-3"></i><span>Usuarios</span>
         </a>
         </Link> 
        
        <Link to="/customers">
         <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-        <i class="fa-solid fa-briefcase me-3"></i><span>Clientes</span>
+        <i className="fa-solid fa-briefcase me-3"></i><span>Clientes</span>
         </a>
         </Link>
 
         <Link to="/messages">
         <a href="#" className="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fa-solid fa-envelope me-3"></i><span>Mensajes</span>
+          ><i className="fa-solid fa-envelope me-3"></i><span>Mensajes</span>
           </a>
         </Link>
 
@@ -61,7 +61,7 @@ export default function Sidebar() {
 
         <Link to="/products">
         <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-        <i class="fa-solid fa-shirt me-3"></i><span>Productos</span>
+        <i className="fa-solid fa-shirt me-3"></i><span>Productos</span>
         </a>
         </Link>
          

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 export default function OrderDetail() {
     const [order, setOrder] = useState({
+        items:[],
         customer:{
             shippingAddress:{},
             billingAddress:{}
@@ -23,6 +24,7 @@ export default function OrderDetail() {
         .then(({data})=>{
             setOrder(data)
             console.log(data);
+            console.log(data.items[0].product);
         })
         .catch(err=>{
             
@@ -65,15 +67,7 @@ export default function OrderDetail() {
                     <h6>Total</h6>
                     <p className="text-muted">{order.total_price}</p>
                   </div>
-                  <div className="col-6 mb-3">
-                    <h6>Detalle</h6>
-                    
-                    
-                  </div>
-                  <div className="col-6 mb-3">
-                    <h6>Telefono</h6>
-                    <p className="text-muted">{}</p>
-                  </div>
+                  
                 </div>
                 <h6>Datos del comprador</h6>
                 <hr className="mt-0 mb-4"/>
@@ -93,6 +87,24 @@ export default function OrderDetail() {
                   </div>
                   
                 </div>
+
+                <h6>Detalle de la compra</h6>
+                <hr className="mt-0 mb-4"/>
+                
+                  
+                  {order.items.map(i=>(
+                    <div className="unit-product row pt-1" key={i.id}>
+                      <div className="col-6 mb-3"><h6>Imagen</h6><img className="img-order-detail" src={i.product.image} alt="Product Kf" /></div>
+                      <div className="col-6 mb-3"><h6>Prod.</h6><p className="text-muted">{i.product.title.slice(0,10)} - Id. Nº {i.id}</p></div>
+                      <div className="col-6 mb-3"><h6>Cant.</h6><p className="text-muted">{i.quantity}</p></div>
+                      <div className="col-6 mb-3"><h6>Prec. Unit.</h6><p className="text-muted">{i.unit_price}</p></div>
+                       
+                       
+                    </div>
+                    ))}
+
+                  
+                
 
                 <h6>Detalle de la entrega</h6>
                 <hr className="mt-0 mb-4"/>

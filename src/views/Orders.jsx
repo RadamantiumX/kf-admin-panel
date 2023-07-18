@@ -65,7 +65,7 @@ useEffect(()=>{
       <td>{o.status}</td>
       <td>{o.total_price}</td>
       <td>{o.number_of_items}</td>
-      <td><Link to={'/customers/'+o.customer.id}>{o.customer.id}</Link></td>
+      <td><Link to={'/customers/'+o.customer.id}><i className="fa-solid fa-eye me-2"></i>{o.customer.id}</Link></td>
       <td>{o.created_at}</td>   
       <td><Link to={'/orders/'+o.id}><i className="fa-solid fa-eye"></i></Link></td>
       <td><a href="#"><i className="fa-regular fa-trash-can"></i></a></td>

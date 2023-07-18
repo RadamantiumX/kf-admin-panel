@@ -1,21 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axiosClient from "../axios-client";
 import { useStateContext } from "../contexts/ContextProvider";
 
 export default function Product() {
+    
+    const navigate = useNavigate();
+
     const[product, setProduct]= useState({
         id: null,
         title: '',
-        description:''
+        description:'',
+        price:null,
+        image:'',
+        category:'',
+
     });
+
+    const {setNotification} = useStateContext();
     let{id}= useParams();
+
+    const updateProduct=(e)=>{
+        e.preventDefault();
+
+        axiosClient.put(`/products/${product.id}`,product)
+         .then(()=>{
+            setNotification('Producto modificado');
+            navigate('/products');
+         })
+    }
 
     if(id){
         useEffect(()=>{
             axiosClient.get(`/products/${id}`)
               .then(({data})=>{
-                 setProduct(data)
+                 setProduct(data);
                  console.log(data)
               })
               .catch(err=>{
@@ -27,22 +46,27 @@ export default function Product() {
     return(
         <>
           <div className="form-product-box m-5">
-            <form>
+            <img className="img-fluid mb-5" src={product.image} alt="imagen del producto Kool Frenzy" />
+            <form onSubmit={updateProduct}>
                 <div className="form-group">
-                    <label for="exampleInputEmail1">Titulo</label>
-                    <input type="text" className="form-control"  value={product.title}/>                 
+                    <label htmlFor="title">Titulo</label>
+                    <input type="text" className="form-control" id="title"  value={product.title} onChange={ev=>setProduct({...product, title: ev.target.value})}/>                 
                 </div>
                 <div className="form-group">
-                    <label for="exampleInputPassword1">Descripción</label>
-                    <input type="text" className="form-control" id="exampleInputPassword1"  value={product.description}/>
+                    <label htmlFor="description">Descripción</label>
+                    <input type="text" className="form-control" id="description"  value={product.description} onChange={ev=>setProduct({...product, description: ev.target.value})}/>
                 </div>
                 <div className="form-group">
-                    <label for="exampleInputPassword1">Precio</label>
-                    <input type="number" className="form-control" id="exampleInputPassword1"  value={product.price}/>
+                    <label htmlFor="price">Precio</label>
+                    <input type="number" className="form-control" id="price"  value={product.price} onChange={ev=>setProduct({...product, price:ev.target.value})}/>
                 </div>
                 <div className="form-group">
-                    <label for="exampleInputPassword1">Categoría</label>
-                    <select className="form-control" name="category" id="category" value={product.category}>
+                    <label htmlFor="imageURL">Nueva URL para la imagen</label>
+                    <input type="text" className="form-control" id="imageURL" onChange={ev=>setProduct({...product,image:ev.target.value})} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="category">Categoría</label>
+                    <select className="form-control" name="category" id="category" value={product.category} onChange={ev=>setProduct({...product,category:ev.target.value})}>
                         <option value="volvo">Remera</option>
                         <option value="saab">Buzo</option>          
                     </select>
@@ -50,6 +74,7 @@ export default function Product() {
                 
                 <button type="submit" className="btn btn-primary mt-2">Guardar Cambios</button>
             </form>
+            
             </div>
         </>
     )

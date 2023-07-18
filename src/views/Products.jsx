@@ -97,6 +97,8 @@ export default function Products() {
   lastPageText="Última"
 />
 </table>
+
+<Link to='/products/add' className="btn btn-success"><i className="fa-solid fa-plus me-3"></i>Agregar un nuevo producto</Link>
 </div>
         </>
     )

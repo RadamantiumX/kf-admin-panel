@@ -11,6 +11,7 @@ import Orders from "./views/Orders";
 import OrderDetail from "./views/OrderDetail";
 import Product from "./views/Product";
 import Products from "./views/Products";
+import AddProduct from "./views/AddProduct";
 import Users from "./views/Users";
 import UserUpdate from "./views/UserUpdate";
 import Metrics from "./views/Metrics";
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
                 path: '/products',
                 element: <Products/>
+            },
+            {
+                path:'/products/add',
+                element: <AddProduct/>
             },
             {
                 path: '/orders',

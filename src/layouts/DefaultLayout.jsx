@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 import { useStateContext } from "../contexts/ContextProvider";
 
 export default function  DefaultLayout() {
-    const {token} = useStateContext();
+    const {token, notification} = useStateContext();
 
     if(!token){
         return <Navigate to="/login"/>
@@ -16,6 +16,8 @@ export default function  DefaultLayout() {
     <main>
         <Sidebar/>
         <Outlet/>
+        {/* Notifications */}
+        {notification&&<div className="notification">{notification}</div>}
     </main>
     </>
     );
