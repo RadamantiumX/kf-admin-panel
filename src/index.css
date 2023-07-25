@@ -21,6 +21,9 @@ body {
   background-size: cover;
   background-position: center;
 }
+a{
+  text-decoration: none;
+}
 
 /*Messages View*/
 .message-box{
@@ -68,3 +71,17 @@ body {
   color: white;
   border-radius: 0.5rem;
 }
+
+/*Dashboard*/
+.card-container{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   
+   
+}
+.data-text{
+  font-size: 22px;
+  font-weight: bold;
+}
+/*Dashboard*/

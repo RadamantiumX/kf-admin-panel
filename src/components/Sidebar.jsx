@@ -96,6 +96,7 @@ export default function Sidebar() {
 
      
      {/* Logo */}
+     <Link to="/">
       <a className="navbar-brand" href="#">
         <img
           src={Logo}
@@ -104,6 +105,7 @@ export default function Sidebar() {
           loading="lazy"
         />
       </a>
+      </Link>
       
       <form className="d-none d-md-flex input-group w-auto my-auto">
         <input

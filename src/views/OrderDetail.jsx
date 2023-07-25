@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axiosClient from "../axios-client";
 import { useParams } from "react-router-dom";
+import { ContextProvider, useStateContext } from "../contexts/ContextProvider";
 
 export default function OrderDetail() {
     const [order, setOrder] = useState({
@@ -13,8 +14,21 @@ export default function OrderDetail() {
     });
 
     const [orderStatuses, setOrderStatuses] = useState([]);
+    const {setNotification} = useStateContext();
+    const statusRef = useRef();
 
     let{id}= useParams();
+
+    const updateStatus=(e)=>{
+       e.preventDefault();
+
+       
+
+        axiosClient.post(`/orders/change-status/${order.id}/${statusRef.current.value}`)
+         .then(()=>{
+           setNotification('Status modificado con exito')
+         })
+    }
 
 
     if(id){
@@ -36,6 +50,7 @@ export default function OrderDetail() {
         axiosClient.get(`/orders/statuses`) 
           .then(({data})=>{
              setOrderStatuses(data);
+             console.log(data);
           }) 
     
         },[])
@@ -47,6 +62,39 @@ export default function OrderDetail() {
 
     return(
         <>
+        {/* Modal */}
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <form onSubmit={updateStatus}>
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Cambiar el Status del pedido</h5>
+                <button type="button" className="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+
+               
+                  <select  name="status" id="status" ref={statusRef}>              
+                    <option value="cancelado">{orderStatuses[2]}</option>
+                    <option value="enviado">{orderStatuses[3]}</option>
+                    <option value="completado">{orderStatuses[4]}</option>
+                  </select>
+                 
+                
+              </div>
+              <div className="modal-footer">
+                
+                <button type="submit" className="btn btn-primary">Guardar los cambios</button>
+              </div>
+            </div>
+            </form>
+            
+          </div>
+        </div>
+        {/* Modal */}
+
+
+
         <section className="vh-100" style={{backgroundColor:'#f4f5f7;'}}>
   <div className="container py-5 h-100">
     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -61,7 +109,7 @@ export default function OrderDetail() {
                 <div className="row pt-1">
                 <div className="col-6 mb-3">
                     <h6>Status</h6>
-                    <p className="text-muted">{order.status}</p>
+                    <p className="text-muted"><a href="#"  data-mdb-toggle="modal" data-mdb-target="#exampleModal"><i className="fa-solid fa-pen-to-square me-2"></i></a>{order.status}</p>
                   </div> 
                   <div className="col-6 mb-3">
                     <h6>Total</h6>

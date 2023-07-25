@@ -1,10 +1,10 @@
 import { createBrowserRouter,Navigate } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
 import GuestLayout from "./layouts/GuestLayout";
+import Dashboard from "./views/Dashboard";
 import Customers from "./views/Customers";
 import Customer from "./views/Customer";
 import Login from "./views/Login";
-
 import Messages from "./views/Messages";
 import NotFound from "./views/NotFound";
 import Orders from "./views/Orders";
@@ -24,7 +24,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Navigate to="/users"/>
+                element: <Navigate to="/dashboard"/>
+            },
+            {
+                path:'/dashboard',
+                element: <Dashboard/>
             },
             {
                 path: '/users',
