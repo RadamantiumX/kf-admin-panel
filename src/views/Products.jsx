@@ -76,7 +76,7 @@ export default function Products() {
 {products.map(p=>(
   <tr key={p.id}>
       <th scope="row">{p.id}</th>
-      <td>{p.title.slice(0,10)}</td>
+      <td>{p.title}</td>
       <td>{p.price}</td>
       <td>{p.category}</td>
       <td><a href="#" onClick={ev=>deleteProduct(p)}><i className="fa-regular fa-trash-can"></i></a></td>
