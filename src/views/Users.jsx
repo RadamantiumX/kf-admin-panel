@@ -9,11 +9,16 @@ export default function Users() {
   const [users, setUsers] = useState([]);
   const[metaData, setMetaData] = useState([]);
 
+  const {setTotalUsers}= useStateContext();
+
+
   const getUsers=(pageNumber=1)=>{
     axiosClient.get(`/users?page=${pageNumber}`)
      .then(({data})=>{
       setUsers(data.data);
       setMetaData(data.meta);
+      setTotalUsers(data.meta.total);
+      console.log(data.meta.total)
      })
      .catch(err=>{
         const response  = err.response;
@@ -25,7 +30,8 @@ useEffect(()=>{
 },[])
     return(
         <>
-        <h1>Usuarios</h1>
+        <h1 className="mt-5">Usuarios</h1>
+        <div className="card table-responsive m-2 ">
         <table className="table">
   <thead>
     <tr>
@@ -60,6 +66,7 @@ useEffect(()=>{
    />
   </tbody>}
 </table>
+</div>
         </>
     )
 }

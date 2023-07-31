@@ -37,8 +37,9 @@ export default function Customers() {
     },[])
     return(
         <>
-          <div className="m-5"> 
-        <h1>Clientes</h1>
+          <div className="m-2"> 
+        <h1 className="mt-5">Clientes</h1>
+        <div className="table-responsive card p-3">
         {loading&&<div>Cargando...</div>}
         {customers.length === 0&&<div>No hay registros...</div>}
         {customers.length !== 0&&<table className="table">
@@ -82,6 +83,7 @@ export default function Customers() {
     lastPageText="Última"
   />
 </table>}
+</div>
 </div>
         </>
     )

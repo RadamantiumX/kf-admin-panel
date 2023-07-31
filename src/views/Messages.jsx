@@ -14,6 +14,7 @@ export default function Messages() {
             setLoading(false);
             setMessages(data.data);
             setMetaData(data.meta);
+            console.log(data);
          })
     }
 

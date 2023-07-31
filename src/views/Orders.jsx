@@ -19,6 +19,7 @@ const getOrders=(pageNumber=1)=>{
       setOrders(data.data);
       setMetaData(data.meta);
       setLoading(false);
+      console.log(data)
    })
    .catch(err=>{
     const response  = err.response;
@@ -41,13 +42,14 @@ useEffect(()=>{
     return(
        
             <>
-          <div className="m-5"> 
-        <h1>Pedidos</h1>
+          <div className="m-2"> 
+        <h1 className="mt-5">Pedidos</h1>
         {loading&&<div>Cargando...</div>}
           {message.length !== 0&&<div className="alert alert-success" role="alert">
             {message} <button className="btn btn-info" onClick={onClose}>Cerrar</button>
           </div>}
           {orders.length === 0 &&<h5>No hay pedidos para mostrar...</h5>}
+          <div className="table-responsive card p-3">
        {orders.length !== 0 && <table className="table">
   <thead>
     <tr>
@@ -91,7 +93,7 @@ useEffect(()=>{
   firstPageText="Primera"
   lastPageText="Última"
 />
-</table>}
+</table>}</div>
 </div>
 
 

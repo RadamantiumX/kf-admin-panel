@@ -54,12 +54,13 @@ export default function Products() {
 
     return(
         <>
-          <div className="m-5"> 
-        <h1>Productos</h1>
+          <div className="m-2"> 
+        <h1 className="mt-5">Productos</h1>
         {loading&&<div>Cargando...</div>}
           {message.length !== 0&&<div className="alert alert-success" role="alert">
             {message} <button className="btn btn-info" onClick={onClose}>Cerrar</button>
           </div>}
+         <div className="card table-responsive p-2"> 
         <table className="table">
   <thead>
     <tr>
@@ -97,9 +98,11 @@ export default function Products() {
   lastPageText="Última"
 />
 </table>
-
-<Link to='/products/add' className="btn btn-success"><i className="fa-solid fa-plus me-3"></i>Agregar un nuevo producto</Link>
 </div>
+</div>
+
+<Link to='/products/add' className="btn btn-success mt-2"><i className="fa-solid fa-plus me-3"></i>Agregar un nuevo producto</Link>
+
         </>
     )
 }
