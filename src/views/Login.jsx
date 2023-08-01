@@ -34,6 +34,7 @@ export default function Login() {
       })
       .catch(err=>{
         const response = err.response;
+        setMessage('Error al intentar ingresar, pruebe de nuevamente..')
         console.log(response);
       })
    }
@@ -58,16 +59,18 @@ export default function Login() {
             <form onSubmit={onSubmit}>
             <div className="form-outline mb-4">
               <input type="email" id="typeEmailX-2" className="form-control form-control-lg" ref={emailRef}/>
-              <label className="form-label" for="typeEmailX-2">Email</label>
+              <label className="form-label" htmlFor="typeEmailX-2">Email</label>
             </div>
 
             <div className="form-outline mb-4">
               <input type="password" id="typePasswordX-2" className="form-control form-control-lg" ref={passwordRef}/>
-              <label className="form-label" for="typePasswordX-2">Password</label>
+              <label className="form-label" htmlFor="typePasswordX-2">Password</label>
             </div>
 
             
-            
+                    {message !== ''&&<div className="alert alert-danger" role="alert">
+                      {message}
+                    </div>}
 
             <button className="btn btn-primary btn-lg btn-block" type="submit">Ingresar</button>
               </form>

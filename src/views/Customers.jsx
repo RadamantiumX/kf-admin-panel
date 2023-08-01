@@ -17,6 +17,11 @@ export default function Customers() {
             setCustomers(data.data);
             setMetaData(data.meta)
          })
+         .catch(err=>{
+          const response  = err.response;
+          console.log(response);
+          setLoading(false);
+       })
     }
 
     const deleteCustomer = (c) =>{

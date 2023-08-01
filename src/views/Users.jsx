@@ -8,7 +8,7 @@ export default function Users() {
      
   const [users, setUsers] = useState([]);
   const[metaData, setMetaData] = useState([]);
-
+  const [message, setMessage] = useState('');
   const {setTotalUsers}= useStateContext();
 
 
@@ -25,6 +25,22 @@ export default function Users() {
         console.log(response);
      })
   }
+
+
+  const deleteUser=(u)=>{
+    if(!window.confirm("Estas seguro de eliminar este usuario?")){
+      return
+    }
+    
+    axiosClient.delete(`/users/${u.id}`)
+     .then(()=>{
+      setMessage('Usuario Eliminado');
+      getUsers;
+      console.log(message);
+     })
+  }
+
+
 useEffect(()=>{
   getUsers()
 },[])
@@ -50,7 +66,7 @@ useEffect(()=>{
       <td>{u.name}</td>
       <td>{u.email}</td>
       
-      <td><i className="fa-regular fa-trash-can"></i></td>
+      {u.is_admin !== 1&&<td><a href="#" onClick={ev=>deleteUser(u)}><i className="fa-regular fa-trash-can"></i></a></td>}
     </tr>
 ))}
     
